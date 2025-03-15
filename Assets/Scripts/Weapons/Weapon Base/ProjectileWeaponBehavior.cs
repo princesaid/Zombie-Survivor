@@ -1,12 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ProjectileWeaponBehavior : MonoBehaviour
 {
 
+    public WeaponScriptableObject weaponData;
     protected Vector3 direction;
     public float destroyAfterSeconds;
+
+    //current valuse 
+    protected float currentDamage;
+    protected float currentSpeed;
+    protected float currentCooldownDuration;
+    protected int currentPierce;
+
+    void Awake()
+    {
+        currentDamage = weaponData.Damage;
+        currentSpeed = weaponData.Speed;
+        currentCooldownDuration = weaponData.CooldownDuration;
+        currentPierce = weaponData.Pierce;
+    }
+
+
+
+
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -59,8 +81,8 @@ public class ProjectileWeaponBehavior : MonoBehaviour
         else if (directionX < 0 && directionY < 0) // left down
         {
             scale.x *= -1;
-            scale.y*= -1;
-            rotation.z =0f;
+            scale.y *= -1;
+            rotation.z = 0f;
 
         }
 
@@ -71,4 +93,33 @@ public class ProjectileWeaponBehavior : MonoBehaviour
 
 
     }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Zombie"))
+        {
+            ZombieStat zombie = collision.GetComponent<ZombieStat>();
+            zombie.TakeDamage(currentDamage);
+            ReducePierce();
+
+        }
+        else if (collision.CompareTag("Prop"))
+        {
+            if (collision.gameObject.TryGetComponent(out BreakableProps breakable))
+            {
+                breakable.TakeDamage(currentDamage);
+                ReducePierce();
+            }
+        }
+    }
+    void ReducePierce()
+    {
+        currentPierce--;
+        if (currentPierce <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
 }

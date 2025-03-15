@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ZombieMovement : MonoBehaviour
 {
+    public ZombieScriptableObject zombieData;
     Transform player;
-    public float moveSpeed;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,7 @@ public class ZombieMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, zombieData.MoveSpeed * Time.deltaTime);
         
     }
 }

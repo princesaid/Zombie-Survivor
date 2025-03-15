@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 public class PlayerMovement : MonoBehaviour
 {
     // Variables
-    public float moveSpeed;
-    Rigidbody2D rigidBody;
+    //public float moveSpeed;
+    
 
     [HideInInspector]
     public float lastHorizontalValue;
@@ -19,6 +19,11 @@ public class PlayerMovement : MonoBehaviour
 
     [HideInInspector]
     public Vector2 lastMovedVector;
+
+    // Refernces
+    Rigidbody2D rigidBody;
+
+    public CharacterScriptableObject characterData;
 
 
     // Start is called before the first frame update
@@ -67,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Move()
     {
-        rigidBody.velocity = new Vector2(movementDirection.x * moveSpeed, movementDirection.y * moveSpeed);
+        rigidBody.velocity = new Vector2(movementDirection.x * characterData.MoveSpeed, movementDirection.y * characterData.MoveSpeed);
 
     }
 }
