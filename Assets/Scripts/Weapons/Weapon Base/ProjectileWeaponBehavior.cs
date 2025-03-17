@@ -25,6 +25,10 @@ public class ProjectileWeaponBehavior : MonoBehaviour
         currentPierce = weaponData.Pierce;
     }
 
+    public float GetCurrentDamage()
+    {
+        return currentDamage *= FindObjectOfType<PlayerStats>().currentMight;
+    }
 
 
 
@@ -99,7 +103,7 @@ public class ProjectileWeaponBehavior : MonoBehaviour
         if (collision.CompareTag("Zombie"))
         {
             ZombieStat zombie = collision.GetComponent<ZombieStat>();
-            zombie.TakeDamage(currentDamage);
+            zombie.TakeDamage(GetCurrentDamage());
             ReducePierce();
 
         }
@@ -107,7 +111,7 @@ public class ProjectileWeaponBehavior : MonoBehaviour
         {
             if (collision.gameObject.TryGetComponent(out BreakableProps breakable))
             {
-                breakable.TakeDamage(currentDamage);
+                breakable.TakeDamage(GetCurrentDamage());
                 ReducePierce();
             }
         }

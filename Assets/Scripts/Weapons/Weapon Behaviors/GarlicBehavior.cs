@@ -18,7 +18,7 @@ public class GarlicBehavior : MeleeWeaponBehavior
         if (collision.CompareTag("Zombie") && !markedEnemies.Contains(collision.gameObject))
         {
             ZombieStat zombie = collision.GetComponent<ZombieStat>();
-            zombie.TakeDamage(currentDamage);
+            zombie.TakeDamage(GetCurrentDamage());
             markedEnemies.Add(collision.gameObject);
 
         }
@@ -26,7 +26,7 @@ public class GarlicBehavior : MeleeWeaponBehavior
         {
             if (collision.gameObject.TryGetComponent(out BreakableProps breakable) && !markedEnemies.Contains(collision.gameObject))
             {
-                breakable.TakeDamage(currentDamage);
+                breakable.TakeDamage(GetCurrentDamage());
                 markedEnemies.Add(collision.gameObject);
                 
             }

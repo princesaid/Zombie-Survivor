@@ -19,5 +19,6 @@ public class BreakableProps : MonoBehaviour
     public void Kill()
     {
         Destroy(gameObject);
+        
     }
 }

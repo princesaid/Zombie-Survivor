@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ZombieMovement : MonoBehaviour
 {
-    public ZombieScriptableObject zombieData;
+    ZombieStat zombie;
     Transform player;
     
     // Start is called before the first frame update
     void Start()
     {
+        zombie = GetComponent<ZombieStat>();
         player = FindObjectOfType<PlayerMovement>().transform;
         
     }
@@ -17,7 +18,7 @@ public class ZombieMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, zombieData.MoveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, zombie.currentMoveSpeed * Time.deltaTime);
         
     }
 }
