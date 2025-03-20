@@ -1,8 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Security.Cryptography;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class ProjectileWeaponBehavior : MonoBehaviour
 {
@@ -24,24 +28,27 @@ public class ProjectileWeaponBehavior : MonoBehaviour
         currentCooldownDuration = weaponData.CooldownDuration;
         currentPierce = weaponData.Pierce;
     }
+     // Start is called before the first frame update
+    protected virtual void Start()
+    {        
+        Destroy(gameObject, destroyAfterSeconds);
+        
+
+
+    }
+
+    protected virtual void Update()
+    {
+        
+
+    }
 
     public float GetCurrentDamage()
     {
-        return currentDamage *= FindObjectOfType<PlayerStats>().currentMight;
+        return currentDamage *= FindObjectOfType<PlayerStats>().CurrentMight;
     }
 
 
-
-
-    // Start is called before the first frame update
-    protected virtual void Start()
-    {
-        Destroy(gameObject, destroyAfterSeconds);
-
-
-    }
-
-    // Update is called once per frame
     public void DirectionChecker(Vector3 dir)
     {
         direction = dir;
@@ -49,9 +56,9 @@ public class ProjectileWeaponBehavior : MonoBehaviour
         float directionX = direction.x;
         float directionY = direction.y;
 
-        Vector3 scale = transform.localScale;
+        UnityEngine.Vector3 scale = transform.localScale;
 
-        Vector3 rotation = transform.rotation.eulerAngles;
+        UnityEngine.Vector3 rotation = transform.rotation.eulerAngles;
 
         if (directionX < 0 && directionY == 0) // left
         {
@@ -92,7 +99,7 @@ public class ProjectileWeaponBehavior : MonoBehaviour
 
 
         transform.localScale = scale;
-        transform.rotation = Quaternion.Euler(rotation);
+        transform.rotation = UnityEngine.Quaternion.Euler(rotation);
 
 
 

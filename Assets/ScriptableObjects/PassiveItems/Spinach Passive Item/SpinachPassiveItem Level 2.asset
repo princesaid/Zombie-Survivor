@@ -15,4 +15,6 @@ MonoBehaviour:
   multipler: 150
   level: 2
   nextLevelPrefab: {fileID: 0}
+  name: Spinach level 2
+  description: Item's Power increased by 150%
   icon: {fileID: 912763909, guid: 904c639a1f8cf844b9971dee8fe4f523, type: 3}

@@ -69,6 +69,10 @@ public class ZombieStat : MonoBehaviour
     }
     private void OnDestroy()
     {
+        if (!gameObject.scene.isLoaded)
+        {
+            return;
+        }
         ZombieSpawner zombieSpawner = FindObjectOfType<ZombieSpawner>();
         zombieSpawner.OnZombieKilled();
     }

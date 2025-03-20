@@ -13,6 +13,8 @@ public class WeaponController : MonoBehaviour
 
     protected PlayerMovement playerMovement;
 
+    
+
 
     // Start is called before the first frame update
     protected virtual void Start()

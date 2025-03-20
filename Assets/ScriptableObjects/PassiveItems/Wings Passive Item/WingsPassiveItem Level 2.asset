@@ -15,4 +15,6 @@ MonoBehaviour:
   multipler: 75
   level: 2
   nextLevelPrefab: {fileID: 0}
+  name: Wings Level 2
+  description: Item's Power increased by 75%
   icon: {fileID: 1490482615, guid: 904c639a1f8cf844b9971dee8fe4f523, type: 3}

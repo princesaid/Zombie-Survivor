@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     // Variables
     //public float moveSpeed;
-    
+
 
     [HideInInspector]
     public float lastHorizontalValue;
@@ -39,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         InputManagement();
+        MouseInputManagement();
 
     }
     void FixedUpdate()
@@ -48,6 +50,10 @@ public class PlayerMovement : MonoBehaviour
     }
     void InputManagement()
     {
+        if (GameManager.instance.isGameOver)
+        {
+            return;
+        }
         float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
 
@@ -71,9 +77,20 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    public Vector2 MouseInputManagement()
+    {
+        float mouseX = Input.mousePosition.x;
+        float mouseY = Input.mousePosition.y;
+        return new Vector2(mouseX, mouseY);
+
+    }
     void Move()
     {
-        rigidBody.velocity = new Vector2(movementDirection.x * player.currentMoveSpeed, movementDirection.y * player.currentMoveSpeed);
+        if (GameManager.instance.isGameOver)
+        {
+            return;
+        }
+        rigidBody.velocity = new Vector2(movementDirection.x * player.CurrentMoveSpeed, movementDirection.y * player.CurrentMoveSpeed);
 
     }
 }

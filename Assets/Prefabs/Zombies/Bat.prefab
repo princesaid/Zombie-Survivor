@@ -199,4 +199,4 @@ MonoBehaviour:
   drops:
   - name: SilverGem
     itemPrefab: {fileID: 8511261835671329839, guid: 11c21c8dd60a05a4b899e338310b28d2, type: 3}
-    dropRate: 50
+    dropRate: 100

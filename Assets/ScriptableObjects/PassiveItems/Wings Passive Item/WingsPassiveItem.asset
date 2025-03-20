@@ -15,4 +15,6 @@ MonoBehaviour:
   multipler: 50
   level: 1
   nextLevelPrefab: {fileID: 2803321516132042325, guid: 77328820fe8376b43ac2f4c794a03794, type: 3}
+  name: Wnig
+  description: Increase movement Speed
   icon: {fileID: 1490482615, guid: 904c639a1f8cf844b9971dee8fe4f523, type: 3}
