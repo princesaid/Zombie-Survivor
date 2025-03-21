@@ -37,6 +37,7 @@ public class ZombieSpawner : MonoBehaviour
     public bool isZombiesCountMaxed = false;
     float spawnTimer;
     public float waveInterval;
+    bool isWaveActive = false;
 
     public List<Transform> relativeSpawnPoints; // List to store all zombies spawn possibl
 
@@ -54,8 +55,9 @@ public class ZombieSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentWaveCount < waves.Count && waves[currentWaveCount].spawnCount == 0)
+        if (currentWaveCount < waves.Count && waves[currentWaveCount].spawnCount == 0 && !isWaveActive)
         {
+
             StartCoroutine(StartNewWave());
         }
 
@@ -73,10 +75,12 @@ public class ZombieSpawner : MonoBehaviour
 
     IEnumerator StartNewWave()
     {
+        isWaveActive = true;
         yield return new WaitForSeconds(waveInterval);
 
         if (currentWaveCount < waves.Count - 1)
         {
+            isWaveActive = false;
             currentWaveCount++;
             CalculateWaveQuote();
         }
@@ -100,30 +104,33 @@ public class ZombieSpawner : MonoBehaviour
             {
                 if (zombieGroup.spawnCount < zombieGroup.zombieCount)
                 {
+
+                    Instantiate(zombieGroup.zombiePrefab, player.position + relativeSpawnPoints[UnityEngine.Random.Range(0, relativeSpawnPoints.Count)].position, Quaternion.identity);
+
+                    zombieGroup.spawnCount++;
+                    waves[currentWaveCount].spawnCount++;
+                    zombiesAlive++;
+
                     if (zombiesAlive >= maxZombiesAllowed)
                     {
                         isZombiesCountMaxed = true;
                         return;
                     }
-                    Instantiate(zombieGroup.zombiePrefab, player.position + relativeSpawnPoints[UnityEngine.Random.Range(0, relativeSpawnPoints.Count)].position, Quaternion.identity);
-                    
-                    zombieGroup.spawnCount++;
-                    waves[currentWaveCount].spawnCount++;
-                    zombiesAlive++;
                 }
 
             }
 
         }
-        // Reset the maxZombiesAllowed flag if the number of zombies alive has dropped below the max amount
-        if (zombiesAlive < maxZombiesAllowed)
-        {
-            isZombiesCountMaxed = false;
-        }
+
     }
 
     public void OnZombieKilled()
     {
         zombiesAlive--;
+        // Reset the maxZombiesAllowed flag if the number of zombies alive has dropped below the max amount
+        if (zombiesAlive < maxZombiesAllowed)
+        {
+            isZombiesCountMaxed = false;
+        }
     }
 }

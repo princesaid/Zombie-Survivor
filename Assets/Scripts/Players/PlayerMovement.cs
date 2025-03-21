@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         InputManagement();
-        MouseInputManagement();
 
     }
     void FixedUpdate()
@@ -77,13 +76,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-    public Vector2 MouseInputManagement()
-    {
-        float mouseX = Input.mousePosition.x;
-        float mouseY = Input.mousePosition.y;
-        return new Vector2(mouseX, mouseY);
-
-    }
+  
     void Move()
     {
         if (GameManager.instance.isGameOver)

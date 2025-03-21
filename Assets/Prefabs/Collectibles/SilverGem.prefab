@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4280149639761228762}
   - component: {fileID: 2386368893456827182}
   - component: {fileID: 3600341309449017913}
+  - component: {fileID: 4733476795739872821}
   m_Layer: 0
   m_Name: SilverGem
   m_TagString: Untagged
@@ -162,3 +163,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4733476795739872821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8511261835671329839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46301fcc106c25040929bc2328e97569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frequecy: 3
+  magnitude: 0.1
+  direction: {x: 0, y: 1, z: 0}
