@@ -18,12 +18,16 @@ public class ZombieStat : MonoBehaviour
     public float despawnDistance = 20f;
     Transform player;
 
+    ZombieMovement zombieMovement;
+
 
     void Awake()
     {
         currentDamage = zombieData.Damage;
         currentHealth = zombieData.MaxHealth;
         currentMoveSpeed = zombieData.MoveSpeed;
+
+        zombieMovement = GetComponent<ZombieMovement>();
 
     }
     void Start()
@@ -62,10 +66,20 @@ public class ZombieStat : MonoBehaviour
         //Debug.Log("Zombie Collided");
         if (collision.gameObject.CompareTag("Player"))
         {
+            zombieMovement.move = false;
             //Debug.Log("Player takes damage");
             PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
             player.TakeDamage(currentDamage);
+            
         }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            zombieMovement.move = true;            
+        }
+        
     }
     private void OnDestroy()
     {

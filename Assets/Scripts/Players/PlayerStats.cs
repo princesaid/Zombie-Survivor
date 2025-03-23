@@ -20,6 +20,7 @@ public class PlayerStats : MonoBehaviour
     float currentProjectileSpeed;
 
     float currentMagnet;
+    Animator animator;
 
 
     #region Current Stats Properties
@@ -180,6 +181,14 @@ public class PlayerStats : MonoBehaviour
         CurrentProjectileSpeed = characterData.ProjectileSpeed;
         CurrentRecovery = characterData.Recvery;
         CurrentMagnet = characterData.Magnet;
+        Sprite characterSprite = characterData.CharacterSprite;
+        
+        
+        animator = gameObject.GetComponent<Animator>();
+        animator.runtimeAnimatorController = characterData.CharacterAnimator;
+
+        gameObject.GetComponent<SpriteRenderer>().sprite = characterSprite;
+
 
         SpawnWeapon(characterData.StartingWeapon);
     }
@@ -297,6 +306,7 @@ public class PlayerStats : MonoBehaviour
                 CurrentHealth = characterData.MaxHealth;
             }
         }
+        UpdateHealthBar();
 
     }
     void Recover()
@@ -309,6 +319,7 @@ public class PlayerStats : MonoBehaviour
         {
             CurrentHealth = characterData.MaxHealth;
         }
+        UpdateHealthBar();
     }
     public void SpawnWeapon(GameObject weapon)
     {

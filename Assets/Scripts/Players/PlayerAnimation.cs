@@ -10,12 +10,15 @@ public class PlayerAnimation : MonoBehaviour
     PlayerMovement playerMovement;
     SpriteRenderer spriteRenderer;
 
+    //CharacterScriptableObject characterScriptableObject;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
 
     }
 
@@ -28,16 +31,16 @@ public class PlayerAnimation : MonoBehaviour
 
             SpriteDirection();
 
-            
+
 
 
         }
         else
         {
             animator.SetBool("Move", false);
-            
+
         }
-        
+
 
     }
 

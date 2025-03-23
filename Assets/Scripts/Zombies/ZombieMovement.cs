@@ -8,6 +8,7 @@ public class ZombieMovement : MonoBehaviour
     Transform player;
 
     public bool hasLegs = false;
+    public bool move = true;
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +37,14 @@ public class ZombieMovement : MonoBehaviour
             }
 
         }
-
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, zombie.currentMoveSpeed * Time.deltaTime);
-
-
-
+        if (move == true)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, zombie.currentMoveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            return;
+        }
 
     }
 }
