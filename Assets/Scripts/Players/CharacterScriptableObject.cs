@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
+
 using UnityEngine;
+
 
 [CreateAssetMenu(fileName = "CharacterScriptableObject", menuName = "ScriptableObjects/Characters")]
 public class CharacterScriptableObject : ScriptableObject
@@ -10,8 +11,8 @@ public class CharacterScriptableObject : ScriptableObject
     Sprite characterSprite;
     public Sprite CharacterSprite { get => characterSprite; set { characterSprite = value;}}
     [SerializeField]
-    AnimatorController characterAnimator;
-    public AnimatorController CharacterAnimator { get => characterAnimator; set { characterAnimator = value;}}
+    RuntimeAnimatorController characterAnimator;
+    public RuntimeAnimatorController CharacterAnimator { get => characterAnimator; set { characterAnimator = value;}}
 
     [SerializeField]
     GameObject startingWeapon;

@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : CharacterMovement
 {
     // Variables
     //public float moveSpeed;
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         InputManagement();
 
@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
   
-    void Move()
+    protected override void Move()
     {
         if (GameManager.instance.isGameOver)
         {
